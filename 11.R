@@ -11,7 +11,6 @@ write.csv(dummy_data, "customer_purchases.csv", row.names = FALSE)
 purchase_data <- read_csv("customer_purchases.csv")
 total_records <- nrow(purchase_data)
 total_unique_customers <- n_distinct(purchase_data$Customer_ID)
-
 cat("Total number of records:", total_records, "\n")
 cat("Total number of unique customers:", total_unique_customers, "\n")
 mean_purchase_amount <- mean(purchase_data$Purchase_Amount)
@@ -23,6 +22,10 @@ cat("Standard deviation of purchase amounts:", std_dev_purchase_amount,
     "\n")
 purchase_data$Segment <- ifelse(purchase_data$Purchase_Amount <
                                   median_purchase_amount, "Low Spender", "High Spender")
-
+print(purchase_data)
 hist(purchase_data$Purchase_Amount, main = "Distribution of Purchase
 Amounts", xlab = "Purchase Amount", col = "blue", border = "black")
+highest_purchase_amount <- max(purchase_data$Purchase_Amount)
+lowest_purchase_amount <- min(purchase_data$Purchase_Amount)
+cat("Highest purchase amount:", highest_purchase_amount, "\n")
+cat("Lowest purchase amount:", lowest_purchase_amount, "\n")
